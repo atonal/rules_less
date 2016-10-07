@@ -48,7 +48,7 @@ def _less_binary_impl(ctx):
             executable = lessc,
             arguments = options + [ src.path, src.path ],
             mnemonic = "LessCompiler",
-            progress_message = "Compiling " + src.path + " to " + css_path
+            progress_message = "Compiling " + src.path + " to " + css_path,
             outputs = [ css_file ],
         )
     return struct(files=set(css_files))
