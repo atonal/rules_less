@@ -40,17 +40,17 @@ def _less_binary_impl(ctx):
     if ctx.attr.compress:
         options.append("--compress")
     for src in ctx.files.srcs:
-        css_path = src.path.rstrip(".less") + ".css";
+        css_path = src.path.rstrip("less") + "css";
         css_file = ctx.new_file(css_path)
-        css_files += [ css_file ]
         ctx.action(
             inputs = [lessc, src],
             executable = lessc,
             arguments = options + [ src.path, src.path ],
             mnemonic = "LessCompiler",
-            progress_message = "Compiling " + src.path + " to " + css_path,
+            progress_message = "Compiling " + src.basename + " to " + css_file.basename,
             outputs = [ css_file ],
         )
+        css_files += [ css_file ]
     return struct(files=set(css_files))
 
 less_deps_attr = attr.label_list(
