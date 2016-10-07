@@ -45,7 +45,7 @@ def _less_binary_impl(ctx):
         ctx.action(
             inputs = [lessc, src],
             executable = lessc,
-            arguments = options + [ src.path, src.path ],
+            arguments = options + [ src.path, css_file.path ],
             mnemonic = "LessCompiler",
             progress_message = "Compiling " + src.basename + " to " + css_file.basename,
             outputs = [ css_file ],
