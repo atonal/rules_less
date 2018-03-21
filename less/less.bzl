@@ -90,8 +90,8 @@ less_binary = rule(
 def less_repositories():
     native.git_repository(
         name = "lessc",
-        remote = "https://github.com/SalzzZ/less-compiler.git",
-        commit = "ce9aa86ad2375856c4e0c24040799bb94fabad79",
+        remote = "https://github.com/atonal/less-compiler.git",
+        commit = "f09ea48e33ce77fbd4e1c0e49f40de7033a3b4ee",
     )
     native.maven_jar(
         name = "net_sourceforge_argparse4j_argparse4j",
