@@ -17,7 +17,7 @@ LESS_FILETYPES = FileType([
     ])
 
 def collect_transitive_sources(ctx):
-    source_files = set(order="compile")
+    source_files = depset(order="compile")
     for dep in ctx.attr.deps:
         source_files += dep.transitive_less_files
     return source_files
@@ -26,7 +26,7 @@ def _less_library_impl(ctx):
     transitive_sources = collect_transitive_sources(ctx)
     transitive_sources += LESS_FILETYPES.filter(ctx.files.srcs)
     return struct(
-        files = set(),
+        files = depset(),
         transitive_less_files = transitive_sources)
 
 def _less_binary_impl(ctx):
@@ -52,7 +52,7 @@ def _less_binary_impl(ctx):
             outputs = [ css_file ],
         )
         css_files += [ css_file ]
-    return struct(files=set(css_files))
+    return struct(files=depset(css_files))
 
 less_deps_attr = attr.label_list(
     providers = ["transitive_less_files"],
