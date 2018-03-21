@@ -17,7 +17,7 @@ LESS_FILETYPES = FileType([
     ])
 
 def collect_transitive_sources(ctx):
-    source_files = depset(order="compile")
+    source_files = depset(order="postorder")
     for dep in ctx.attr.deps:
         source_files += dep.transitive_less_files
     return source_files
