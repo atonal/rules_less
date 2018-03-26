@@ -44,7 +44,7 @@ def _less_binary_impl(ctx):
         css_path = src.path.replace(package_name + "/", "").replace(".less", ".css")
         css_file = ctx.new_file(css_path)
         ctx.action(
-            inputs = [lessc, src],
+            inputs = [lessc, src] + list(transitive_sources),
             executable = lessc,
             arguments = options + [ src.path, css_file.path ],
             mnemonic = "LessCompiler",
